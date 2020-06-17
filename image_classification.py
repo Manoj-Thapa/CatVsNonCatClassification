@@ -16,6 +16,7 @@ def load_dataset():
            -> each image is of shape (num_px, num_px, 3) where 3 is for the 3 channels (RGB).
 
     """
+    
     train_dataset = h5py.File('datasets/train_catvnoncat.h5', "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:])  # your train set features
     train_set_y_orig = np.array(train_dataset["train_set_y"][:])  # your train set labels
