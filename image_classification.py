@@ -167,10 +167,11 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
     """
 
     costs = []
+    iterations = []
 
     for i in range(num_iterations):
 
-        # Cost and gradient calculation (≈ 1-4 lines of code)
+        # Cost and gradient calculation
 
         grads, cost = propagate(w, b, X, Y)
 
@@ -178,7 +179,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
         dw = grads["dw"]
         db = grads["db"]
 
-        # update rule (≈ 2 lines of code)
+        # update rule
 
         w = w - learning_rate * dw
         b = b - learning_rate * db
@@ -186,6 +187,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
         # Record the costs
         if i % 100 == 0:
             costs.append(cost)
+            iterations.append(i)
 
         # Print the cost every 100 training iterations
         if print_cost and i % 100 == 0:
@@ -197,7 +199,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
     grads = {"dw": dw,
              "db": db}
 
-    return params, grads, costs
+    return params, grads, costs, iterations
 
 
 def predict(w, b, X):
@@ -258,17 +260,17 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
 
     """
 
-    # initialize parameters with zeros (≈ 1 line of code)
+    # initialize parameters with zeros
     w, b = initialize_with_zeros(X_train.shape[0])
 
-    # Gradient descent (≈ 1 line of code)
+    # Gradient descent
     parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)
 
     # Retrieve parameters w and b from dictionary "parameters"
     w = parameters["w"]
     b = parameters["b"]
 
-    # Predict test/train set examples (≈ 2 lines of code)
+    # Predict test/train set examples
     Y_prediction_test = predict(w, b, X_test)
     Y_prediction_train = predict(w, b, X_train)
 
@@ -284,6 +286,18 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
          "learning_rate": learning_rate,
          "num_iterations": num_iterations
          }
+    
+    """
+    
+            Simple Graph to see the cost after every 100 iterations
+ 
+    """
+    
+    plt.plot(iterations, costs)
+    plt.xlabel('Number of iterations')
+    plt.ylabel('Cost')
+    plt.title('Cost after every iterations')
+    plt.show()
 
     """ 
     
@@ -308,7 +322,7 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
     if my_predicted_image[0][0] == 1:
         print('Your algorithm predicts a "Cat" picture.')
     else:
-        print('Your algorithm predicts a "non-Cat" picture.')
+        print('Your algorithm predicts a "Non-Cat" picture.')
 
     return d
 
