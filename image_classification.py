@@ -287,8 +287,8 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
     
     # plot the cost
     plt.plot(iterations, costs)
-    plt.ylabel('cost')
-    plt.xlabel('iterations (per hundreds)')
+    plt.ylabel('Cost')
+    plt.xlabel('Iterations (per hundreds)')
     plt.title("Learning rate =" + str(learning_rate))
     plt.show()
 
