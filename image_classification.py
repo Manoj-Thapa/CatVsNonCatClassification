@@ -5,7 +5,6 @@ import h5py
 
 
 def load_dataset():
-
     """
 
             The dataset is taken from Coursera
@@ -34,7 +33,6 @@ def load_dataset():
 
 
 def preprocessing():
-
     """
 
             Common steps for pre-processing a new dataset are:
@@ -59,7 +57,6 @@ def preprocessing():
 
 
 def initialize_with_zeros(dim):
-
     """
 
             This function creates a vector of zeros of shape (dim, 1) for w and initializes b to 0.
@@ -83,7 +80,6 @@ def initialize_with_zeros(dim):
 
 
 def sigmoid(z):
-
     """
 
             Compute the sigmoid of z
@@ -102,7 +98,6 @@ def sigmoid(z):
 
 
 def propagate(w, b, X, Y):
-
     """
 
             Implement the cost function and its gradient for the propagation explained above
@@ -145,7 +140,6 @@ def propagate(w, b, X, Y):
 
 
 def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
-
     """
 
             This function optimizes w and b by running a gradient descent algorithm
@@ -166,8 +160,8 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
 
     """
 
-    costs = []
-    iterations = []
+    costs = []  # keep track of cost
+    iterations = []  # keep track of iterations
 
     for i in range(num_iterations):
 
@@ -203,7 +197,6 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
 
 
 def predict(w, b, X):
-
     """
 
             Predict whether the label is 0 or 1 using learned logistic regression parameters (w, b)
@@ -241,7 +234,6 @@ def predict(w, b, X):
 
 
 def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0.5, print_cost=False):
-
     """
 
             Builds the logistic regression model by calling the function you've implemented previously
@@ -293,10 +285,11 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
  
     """
     
+    # plot the cost
     plt.plot(iterations, costs)
-    plt.xlabel('Number of iterations')
-    plt.ylabel('Cost')
-    plt.title('Cost after every iterations')
+    plt.ylabel('cost')
+    plt.xlabel('iterations (per hundreds)')
+    plt.title("Learning rate =" + str(learning_rate))
     plt.show()
 
     """ 
@@ -316,8 +309,8 @@ def model(X_train, Y_train, X_test, Y_test, num_iterations=2000, learning_rate=0
     final_image = image.reshape(1, 64 * 64 * 3).T
     my_predicted_image = predict(d["w"], d["b"], final_image)
 
-    print(plt.imshow(image))
-    print(plt.show())
+    plt.imshow(image)
+    plt.show()
 
     if my_predicted_image[0][0] == 1:
         print('Your algorithm predicts a "Cat" picture.')
