@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import h5py
 
-
 def load_dataset():
     """
 
